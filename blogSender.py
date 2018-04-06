@@ -8,6 +8,7 @@
 
 import os
 import re
+import sys
 import requests
 import markdown
 from config  import *
@@ -83,6 +84,7 @@ class csdn(blogSender):
              "private":0,
              #"id": 0     修改已有文章
              }
+         self.po_data.update(DEFAULT_DATA)
         self.cookie = self.parseCookie(CSDN_COOKIE)
     def getData(self,path):
         if not os.path.exists(path):
@@ -138,10 +140,18 @@ class jianshu(blogSender):
 
 if __name__ == '__main__':
     poster = csdn()
-    path = 'D:/blog/blog/source/_posts/about.md'
-    data = poster.getData(path)
-    # poster.upload()   上传图片
-    #json= poster.at_post(data)
-    json= poster.ck_post(data)
-    print(json)
+    #path = ['D:/blog/blog/source/_posts/about.md']
     
+    # poster.upload()   上传图片
+    post=None
+    if 'session' in CSDN_COOKIE or 'SESSION' in CSDN_COOKI:
+        post = poster.ck_post
+    elif  CSDN_AUTH_DATA['password'] != '***' and CSDN_AUTH_DATA['client_secret'] != '***' "
+        post = poster.at_post
+    if post is None:
+        print("please edit the config.py firstly to configue neccessary args")
+    else:
+        for file in  sys.argv[1:]:
+            data = poster.getData(file.strip())
+            json= poster.ck_post(data)
+            print(json)
