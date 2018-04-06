@@ -19,12 +19,13 @@
 * 七牛云账号
 
 ## 怎么使用?
-```
-git clone  git@github.com:mbinary/blog-sender.git
-cd blog-sender
-# pip3 install markdown 可选
-vim config.py  # 配置必要参数
-python3 blogSender.py  file1  file2 ...
+```shell
+$ git clone  git@github.com:mbinary/blog-sender.git
+$ cd blog-sender
+$ pip3 install markdown     可选
+$ vim config.py   配置必要参数
+$ python3 blogSender.py  file1  file2 ...
+
 ```
 这是配置参数的页面,有详细介绍
 
