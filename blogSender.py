@@ -153,5 +153,5 @@ if __name__ == '__main__':
     else:
         for file in  sys.argv[1:]:
             data = poster.getData(file.strip())
-            json= poster.ck_post(data)
-            print(json)
+            ret= post(data)
+            print(ret)
