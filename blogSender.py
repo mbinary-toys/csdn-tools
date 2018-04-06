@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding=utf-8
 '''************************************************************************
     > File Name: blogSender.py
     > Author: mbinary
@@ -96,6 +96,7 @@ class csdn(blogSender):
             s=f.read()
         
         fd = re.search('\s*---(.*?)---',s,re.DOTALL)
+        self.po_data['markdowncontent'] = s
         if not fd:
             self.po_data['content'] = md2html(s) if MDON else s
         else:
@@ -127,6 +128,7 @@ class csdn(blogSender):
                        
 
     def upload(self,session,url,fileName,file):
+        '''upload pics'''
         try:
             f = {"file":(fileName,open(file,"rb"),"image/png")}
             res = session.post(url=url,headers = self.headers,files = f)
@@ -137,21 +139,19 @@ class csdn(blogSender):
 class jianshu(blogSender):    
     pass
 
-
 if __name__ == '__main__':
     poster = csdn()
-    #path = ['D:/blog/blog/source/_posts/about.md']
-    
-    # poster.upload()   上传图片
     post=None
     if 'session' in CSDN_COOKIE or 'SESSION' in CSDN_COOKIE:
         post = poster.ck_post
     elif  CSDN_AUTH_DATA['password'] != '***' and CSDN_AUTH_DATA['client_secret'] != '***' :
         post = poster.at_post
+       
+    paths = sys.argv[1:]  
     if post is None:
         print("[Error]: please edit the config.py first to configue neccessary args")
     else:
-        for file in  sys.argv[1:]:
+        for file in  paths:
             data = poster.getData(file.strip())
             ret= post(data)
             print(ret)
