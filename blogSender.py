@@ -84,7 +84,7 @@ class csdn(blogSender):
              "private":0,
              #"id": 0     修改已有文章
              }
-         self.po_data.update(DEFAULT_DATA)
+        self.po_data.update(DEFAULT_DATA)
         self.cookie = self.parseCookie(CSDN_COOKIE)
     def getData(self,path):
         if not os.path.exists(path):
@@ -144,12 +144,12 @@ if __name__ == '__main__':
     
     # poster.upload()   上传图片
     post=None
-    if 'session' in CSDN_COOKIE or 'SESSION' in CSDN_COOKI:
+    if 'session' in CSDN_COOKIE or 'SESSION' in CSDN_COOKIE:
         post = poster.ck_post
-    elif  CSDN_AUTH_DATA['password'] != '***' and CSDN_AUTH_DATA['client_secret'] != '***' "
+    elif  CSDN_AUTH_DATA['password'] != '***' and CSDN_AUTH_DATA['client_secret'] != '***' :
         post = poster.at_post
     if post is None:
-        print("please edit the config.py firstly to configue neccessary args")
+        print("[Error]: please edit the config.py first to configue neccessary args")
     else:
         for file in  sys.argv[1:]:
             data = poster.getData(file.strip())
