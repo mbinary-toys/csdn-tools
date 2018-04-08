@@ -7,18 +7,20 @@
 
 ## 需要些什么?
 
-### blog-sender
+### 对于blog-sender
 * python3
 * python 模块
     - requests
     - markdown (可选)
     
 
-### picPost(可选)
+### 对于picPost(可选)
 * qshell: 七牛云的一个命令行工具
 * 七牛云账号
 
 ## 怎么使用?
+可以看[这篇文章](https://blog.csdn.net/marvellousbinary/article/details/79832708)
+
 ```shell
 $ git clone  git@github.com:mbinary/blog-sender.git
 $ cd blog-sender
@@ -37,6 +39,7 @@ $ python3 blogSender.py  file1  file2 ...
 ---
 
 title: ABOUT
+channel: 33
 categories: 总结
 tags: [blog,me]
 
