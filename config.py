@@ -9,8 +9,8 @@
 # python变量 配置参数
 
 
-# 两者二选一
-# CSDN_AUTH_DATA 在 使用api  需要在http://open.csdn.net/wiki/api/注册开发者,得到cliet_id 和 client_secret
+#CSDN_AUTH_DATA ,CSDN_COOKIE 至少选一个配置
+# CSDN_AUTH_DATA  使用api 来发送p博客, 需要在http://open.csdn.net/wiki/api/注册开发者,得到cliet_id 和 client_secret
 # CSDN_COOKIE 在发博客页面获取cookie,     
 CSDN_AUTH_DATA = {'client_id' :'1100668',
                'client_secret': '***',
@@ -18,16 +18,17 @@ CSDN_AUTH_DATA = {'client_id' :'1100668',
                'username': 'marvellousbinary',
                'password': '***'
                 }
-# str
+# 通过浏览器,打开发送博客的页面https://mp.csdn.net/mdeditor然后F12,在network中的第一个页面中复制cookie  str 
+#可参考这篇文章https://blog.csdn.net/marvellousbinary/article/details/79832708
 CSDN_COOKIE = '''
               
               '''
 
-# markdown 语法, 需pip install markdown
+# 使用markdown 语法, 需pip install markdown
 MDON  = True
 
 
-# xdefault configuration
+# default configuration
 
 
 DEFAULT_DATA = {
