@@ -78,8 +78,6 @@ class csdn(blogSender):
              "markdowncontent":'# hello, world~',
              "content": '''<h1>hello, world~</h1>''',
              "categories":"默认分类",
-             "channel":33,
-             "tags":"python,tag2",
             'type':'original', #original原创 report转载 translated 翻译
              "private":0,
              #"id": 0     修改已有文章
@@ -96,13 +94,15 @@ class csdn(blogSender):
             s=f.read()
         
         fd = re.search('\s*---(.*?)---',s,re.DOTALL)
-        self.po_data['markdowncontent'] = s
+        pre = '>这篇文章是程序自动生成并发表的,详情可以见[这篇文章](https://blog.csdn.net/marvellousbinary/article/details/79832708)\n\n'
+        self.po_data['markdowncontent'] = pre + s
+        self.po_data['content'] = pre
         if not fd:
-            self.po_data['content'] = md2html(s) if MDON else s
+            self.po_data['content']+= md2html(s) if MDON else s
         else:
             meta = fd.groups()[0]
             p  = len(meta)+7
-            self.po_data['content'] = md2html(s[p:]) if MDON else s[p:]
+            self.po_data['content'] += md2html(s[p:]) if MDON else s[p:]
             for entry in  ["content","categories","tags",'type','channel','title']:
                 val = re.search(entry+':(.*?)\n',s)
                 try:self.po_data[entry] = val.groups()[0].strip()

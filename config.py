@@ -41,6 +41,7 @@ DEFAULT_DATA = {
              "categories":"默认分类",
              "channel":33,
              "tags":"python,tag2",
+             "type":"origin"
              }
              
 '''
