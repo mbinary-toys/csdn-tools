@@ -94,7 +94,7 @@ class csdn(blogSender):
             s=f.read()
         
         fd = re.search('\s*---(.*?)---',s,re.DOTALL)
-        pre = '>这篇文章是程序自动生成并发表的,详情可以见[这篇文章](https://blog.csdn.net/marvellousbinary/article/details/79832708)\n\n'
+        pre = '这篇文章是程序自动发表的,详情可以见<a href="https://blog.csdn.net/marvellousbinary/article/details/79832708)">这里</a><br>'
         self.po_data['markdowncontent'] = pre + s
         self.po_data['content'] = pre
         if not fd:
