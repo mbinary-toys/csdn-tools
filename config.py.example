@@ -14,11 +14,11 @@ CSDN_AUTH_DATA ,CSDN_COOKIE 至少选一个配置
      需要在http://open.csdn.net/wiki/api/注册开发者,得到cliet_id 和 client_secret
  CSDN_COOKIE 在发博客页面获取cookie,
 '''
-CSDN_AUTH_DATA = {'client_id' :'1100668',
-               'client_secret': '***',
-               'grant_type': 'password',
-               'username': 'marvellousbinary',
-               'password': '***'
+CSDN_AUTH_DATA = {'client_id' :'***',# 需填
+               'client_secret': '***',# 需填
+               'grant_type': 'password', # 不需要改
+               'username': 'marvellousbinary',#改成自己的用户名
+               'password': '***' #需填
                 }
 '''
 通过浏览器,打开发送博客的页面https://mp.csdn.net/mdeditor
@@ -30,19 +30,26 @@ CSDN_COOKIE = '''
               '''
 
 # 使用markdown 语法, 需pip install markdown
-MDON  = True
+MDON  = False 
 
 
 # default configuration
-
-DEFAULT_DATA = {
+DEFAULT_DATA={
              "title":"do you know my name?",
+             "markdowncontent":'# hello, world~',
              "content": '''<h1>hello, world~</h1>''',
              "categories":"默认分类",
-             "channel":33,
-             "tags":"python,tag2",
-             "type":"origin"
+              'tags':'leetcode,python,algorithm',
+              'channel':33,
+              'articleedittype':'1',
+              'type':'original',
+              'status':0,
+            'type':'original', #original原创 report转载 translated 翻译
+             "private":'0'
+             #"id": 0    # int 修改已有文章
              }
+
+
              
 '''
 channel  各个值的含义

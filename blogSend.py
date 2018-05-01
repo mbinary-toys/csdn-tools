@@ -12,7 +12,11 @@ import sys
 import requests
 import markdown
 from config  import *
+#import argparse
 
+#parser = argparse.ArgumentParser()
+#parser.add_argument('-d','--directory')
+#parser.add_argument('-f','--file')
 
 
 def md2html(s):
@@ -73,17 +77,10 @@ class csdn(blogSender):
     
     def __init__(self):
         super().__init__()
-        self.url = "https://mp.csdn.net/mdeditor/saveArticle"
-        self.po_data = {"title":"do you know my name?",
-             "markdowncontent":'# hello, world~',
-             "content": '''<h1>hello, world~</h1>''',
-             "categories":"默认分类",
-            'type':'original', #original原创 report转载 translated 翻译
-             "private":0,
-             #"id": 0     修改已有文章
-             }
-        self.po_data.update(DEFAULT_DATA)
+        self.url = "https://mp.csdn.net/mdeditor/saveArticle"  
+        self.po_data = DEFAULT_DATA
         self.cookie = self.parseCookie(CSDN_COOKIE)
+    
     def getData(self,path):
         if not os.path.exists(path):
             print('file path {}  doesn\'t exist!'.format(path))
@@ -91,25 +88,28 @@ class csdn(blogSender):
         self.po_data['title'] = os.path.basename(path)
         s = None
         with open(path,'r',encoding='utf8',errors='ignore') as f:
-            s=f.read()
-        
-        fd = re.search('\s*---(.*?)---',s,re.DOTALL)
-        pre = '这篇文章是程序自动发表的,详情可以见<a href="https://blog.csdn.net/marvellousbinary/article/details/79832708)">这里</a><br>'
+            line = f.readline()
+            if not  line.startswith('---'):
+                s = line +f.read()
+            else:
+                dic={}
+                line=''
+                while not  line.startswith('---'):
+                    line = f.readline()
+                    print(line,123)
+                    p = line.find(':')
+                    if p==-1: continue
+                    else :
+                        val = line[p+1:].strip(' \'\"\n').strip('[]')
+                        if val!='': dic[line[:p].strip(' \'\"')] =val
+                print(dic)
+                self.po_data .update(dic)
+                s = f.read()
+        pre = '这篇文章是程序自动发表的,详情可以见<a href="https://blog.csdn.net/marvellousbinary/article/details/79832708)">这里</a><br>\n\n'
+        self.po_data['content'] = pre+ md2html(s) if MDON else s
         self.po_data['markdowncontent'] = pre + s
-        self.po_data['content'] = pre
-        if not fd:
-            self.po_data['content']+= md2html(s) if MDON else s
-        else:
-            meta = fd.groups()[0]
-            p  = len(meta)+7
-            self.po_data['content'] += md2html(s[p:]) if MDON else s[p:]
-            for entry in  ["content","categories","tags",'type','channel','title']:
-                val = re.search(entry+':(.*?)\n',s)
-                try:self.po_data[entry] = val.groups()[0].strip()
-                except:pass
-        
         return self.po_data
-        
+               
     def at_post(self,data):
         '''
         使用api  需要在http://open.csdn.net/wiki/api/注册开发者,得到cliet_id 和 client_secret
