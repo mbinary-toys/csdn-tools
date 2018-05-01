@@ -96,13 +96,11 @@ class csdn(blogSender):
                 line=''
                 while not  line.startswith('---'):
                     line = f.readline()
-                    print(line,123)
                     p = line.find(':')
                     if p==-1: continue
                     else :
                         val = line[p+1:].strip(' \'\"\n').strip('[]')
                         if val!='': dic[line[:p].strip(' \'\"')] =val
-                print(dic)
                 self.po_data .update(dic)
                 s = f.read()
         pre = '这篇文章是程序自动发表的,详情可以见<a href="https://blog.csdn.net/marvellousbinary/article/details/79832708)">这里</a><br>\n\n'
