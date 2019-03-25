@@ -3,7 +3,7 @@
     > File Name: uploadFile.py
     > Author: mbinary
     > Mail: zhuheqin1@gmail.com 
-    > Blog: https://mbinary.github.io
+    > Blog: https://mbinary.xyz
     > Created Time: Sun 08 Apr 2018 11:04:17 PM DST
  ************************************************************************'''
 import time
@@ -37,7 +37,7 @@ def getName(path):
 zipForm = ['.rar','.zip','.7z','.tar','.gz','.xz']
 with open('readme.txt','w') as f:
     tm = time.strftime('%Y-%m-%d  %H:%M')
-    f.write('made by: mbinary\n blog: https://mbinary.coding.me\n time: {tm}'.format(tm=tm))
+    f.write('made by: mbinary\n blog: https://mbinary.xyz\n time: {tm}'.format(tm=tm))
 
 def makePack(path):
     #for i in zipForm:

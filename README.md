@@ -34,7 +34,7 @@ $ python3 blogSender.py  file1  file2 ...
 ```
 这是配置参数的页面，有详细介绍
 
-![](src/conf.png)
+![](images/conf.png)
 
 注意写文章的时候可以带上元信息,
 如下
