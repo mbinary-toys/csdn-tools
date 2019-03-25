@@ -1,4 +1,4 @@
-# 发表博客的工具
+# CSDN-blog-sender
 >利用 api 或者 cookie 发表博客，目前支持 csdn
 
 ## 为什么有它？
@@ -48,15 +48,3 @@ type: original/translate/repost
 ---
 ```
 如果没有，那么就是默认的了。
-
-## 未来的可能
-有需求再添加功能吧 :see_no_evil:
-
-## 欢迎 fork & PR
-
-## LICENCE
-[MIT](LICENCE.txt)
-
-## 联系我
-* mail: <img style="display:inline" src="http://ounix1xcw.bkt.clouddn.com/gmail.png"></img>
-* QQ  : 414313516
